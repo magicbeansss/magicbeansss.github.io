@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping App</title>
+    <link rel="stylesheet" href="wel.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Bob's Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('createUserPage')">Create User</a></li>
+                <li><a href="#" onclick="showPage('loginPage')">Login</a></li>
+                <li><a href="#" onclick="showPage('shoppingPage')">Shopping</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="createUserPage" class="page">
+        <!-- create -->
+        <h2>Create New User</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="createUser()">Create User</button>
+    </div>
+
+    <div id="loginPage" class="page">
+        <!-- login -->
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="shoppingPage" class="page">
+        <!-- shop -->
+        <h2>Shopping Page</h2>
+        <select id="productSelect">
+            <option value="10">Product 1 - $10</option>
+            <option value="20">Product 2 - $20</option>
+            <option value="30">Product 3 - $30</option>
+        </select>
+        <input type="number" id="quantity" placeholder="Quantity">
+        <button onclick="checkout()">Checkout</button>
+        <div id="totalOrder"></div>
+    </div>
+
+    <img src="https://psdland.net/wp-content/uploads/2022/01/1641273403_maxresdefault.jpg" alt="hero">
+
+    <footer>
+        <p>Copyright, Tao Tianyi(Bob)</p>
+    </footer>
+
+    <script src="wel.js"></script>
+</body>
+</html>
