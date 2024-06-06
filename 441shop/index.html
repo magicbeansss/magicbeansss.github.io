@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping App</title>
+    <link rel="stylesheet" href="wel.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Bob's Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('createUserPage')">Create User</a></li>
+                <li><a href="#" onclick="showPage('loginPage')">Login</a></li>
+               <!-- <li><a href="#" onclick="showPage('shoppingPage')">Shopping</a></li> -->
+                <li><a href="#" onclick="showPage('loginPage')">Shopping</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="createUserPage" class="page">
+        <!-- create -->
+        <h2>Create New User</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="createUser()">Create User</button>
+    </div>
+
+    <div id="loginPage" class="page">
+        <!-- login -->
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+<!--   <div id="shoppingPage" class="page">  -->
+        <!-- shop -->
+<!--        <h2>Shopping Page</h2>
+        <select id="productSelect">
+            <option value="10">Product 1 - $10</option>
+            <option value="20">Product 2 - $20</option>
+            <option value="30">Product 3 - $30</option>
+        </select>
+        <input type="number" id="quantity" placeholder="Quantity">
+        <button onclick="checkout()">Checkout</button>
+        <div id="totalOrder"></div>
+    </div>
+-->
+
+<div id="shoppingPage" class="page">
+    <!-- shop -->
+    <h2>Shopping Page</h2>
+    <div class="container">
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Product 1">
+            <h2>Product 1</h2>
+            <p>\$10.00</p>
+            <input type="number" id="quantity1" placeholder="Quantity">
+            <button onclick="addToCart('Product 1', 10, document.getElementById('quantity1').value)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Product 2">
+            <h2>Product 2</h2>
+            <p>\$20.00</p>
+            <input type="number" id="quantity2" placeholder="Quantity">
+            <button onclick="addToCart('Product 2', 20, document.getElementById('quantity2').value)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Product 3">
+            <h2>Product 3</h2>
+            <p>\$30.00</p>
+            <input type="number" id="quantity3" placeholder="Quantity">
+            <button onclick="addToCart('Product 3', 30, document.getElementById('quantity3').value)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <p>Total: $<span id="total-price">0</span></p>
+            <button onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+    let totalPrice = 0;
+
+    function addToCart(productName, productPrice, quantity) {
+        quantity = parseInt(quantity);
+        if (isNaN(quantity) || quantity <= 0) {
+            alert('Please enter a valid quantity');
+            return;
+        }
+        for (let i = 0; i < quantity; i++) {
+            cart.push({ name: productName, price: productPrice });
+            totalPrice += productPrice;
+        }
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cart-items');
+        cartItems.innerHTML = '';
+        cart.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'cart-item';
+            div.innerHTML = `<span>${item.name}</span><span>$${item.price}</span>`;
+            cartItems.appendChild(div);
+        });
+        document.getElementById('total-price').innerText = totalPrice;
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert('Your cart is empty');
+            return;
+        }
+        alert('Checkout successful! Total amount: $' + totalPrice);
+        cart = [];
+        totalPrice = 0;
+        updateCart();
+    }
+</script>
+
+
+    <img src="https://psdland.net/wp-content/uploads/2022/01/1641273403_maxresdefault.jpg" alt="hero">
+
+    <footer>
+        <p>Copyright, Tao Tianyi(Bob)</p>
+    </footer>
+
+    <script src="wel.js"></script>
+</body>
+</html>
