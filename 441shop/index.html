@@ -4,7 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping App</title>
-    <link rel="stylesheet" href="wel.css">
+    <style>
+        /* Theme color definition */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --white: #fff;
+            --black: #000;
+        }
+
+        /* Style code, using theme colors */
+        body {
+            font-family: sans-serif;
+            background-color: var(--white);
+        }
+        .page {
+            display: none;
+            padding: 20px;
+            border: 1px solid var(--secondary-color);
+            margin-bottom: 20px;
+            background-color: var(--white);
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .product {
+            width: 200px;
+            text-align: center;
+            border: 1px solid var(--secondary-color);
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: var(--white);
+        }
+        .cart {
+            width: 300px;
+            text-align: center;
+            border: 1px solid var(--secondary-color);
+            padding: 10px;
+            background-color: var(--white);
+        }
+        .cart-item {
+            margin-bottom: 5px;
+        }
+        header {
+            background-color: var(--primary-color);
+            padding: 10px;
+            color: var(--white);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,121 +95,78 @@
             <ul>
                 <li><a href="#" onclick="showPage('createUserPage')">Create User</a></li>
                 <li><a href="#" onclick="showPage('loginPage')">Login</a></li>
-               <!-- <li><a href="#" onclick="showPage('shoppingPage')">Shopping</a></li> -->
-                <li><a href="#" onclick="showPage('loginPage')">Shopping</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
+                <li id="shoppingLink" style="display: none;"><a href="#" onclick="showPage('shoppingPage')">Shopping</a></li>
+                <li><a href="#" onclick="showPage('aboutPage')">About Us</a></li>
+                <li><a href="#" onclick="showPage('contactPage')">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <div id="createUserPage" class="page">
-        <!-- create -->
+    <div id="createUserPage" class="page" style="display: none;">
+        <!-- Create User -->
         <h2>Create New User</h2>
         <input type="text" id="username" placeholder="Username">
         <input type="password" id="password" placeholder="Password">
         <button onclick="createUser()">Create User</button>
     </div>
 
-    <div id="loginPage" class="page">
-        <!-- login -->
+    <div id="loginPage" class="page" style="display: none;">
+        <!-- Login -->
         <h2>Login</h2>
         <input type="text" id="loginUsername" placeholder="Username">
         <input type="password" id="loginPassword" placeholder="Password">
         <button onclick="login()">Login</button>
     </div>
 
-<!--   <div id="shoppingPage" class="page">  -->
-        <!-- shop -->
-<!--        <h2>Shopping Page</h2>
-        <select id="productSelect">
-            <option value="10">Product 1 - $10</option>
-            <option value="20">Product 2 - $20</option>
-            <option value="30">Product 3 - $30</option>
-        </select>
-        <input type="number" id="quantity" placeholder="Quantity">
-        <button onclick="checkout()">Checkout</button>
-        <div id="totalOrder"></div>
-    </div>
--->
-
-<div id="shoppingPage" class="page">
-    <!-- shop -->
-    <h2>Shopping Page</h2>
-    <div class="container">
-        <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Product 1">
-            <h2>Product 1</h2>
-            <p>\$10.00</p>
-            <input type="number" id="quantity1" placeholder="Quantity">
-            <button onclick="addToCart('Product 1', 10, document.getElementById('quantity1').value)">Add to Cart</button>
+    <div id="shoppingPage" class="page" style="display: none;">
+        <!-- Shopping Page -->
+        <h2>Shopping Page</h2>
+        <div class="container">
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product 1">
+                <h2>Product 1</h2>
+                <p>$10.00</p>
+                <input type="number" id="quantity1" placeholder="Quantity">
+                <button onclick="addToCart('Product 1', 10, document.getElementById('quantity1').value)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product 2">
+                <h2>Product 2</h2>
+                <p>$20.00</p>
+                <input type="number" id="quantity2" placeholder="Quantity">
+                <button onclick="addToCart('Product 2', 20, document.getElementById('quantity2').value)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/150" alt="Product 3">
+                <h2>Product 3</h2>
+                <p>$30.00</p>
+                <input type="number" id="quantity3" placeholder="Quantity">
+                <button onclick="addToCart('Product 3', 30, document.getElementById('quantity3').value)">Add to Cart</button>
+            </div>
         </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Product 2">
-            <h2>Product 2</h2>
-            <p>\$20.00</p>
-            <input type="number" id="quantity2" placeholder="Quantity">
-            <button onclick="addToCart('Product 2', 20, document.getElementById('quantity2').value)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/150" alt="Product 3">
-            <h2>Product 3</h2>
-            <p>\$30.00</p>
-            <input type="number" id="quantity3" placeholder="Quantity">
-            <button onclick="addToCart('Product 3', 30, document.getElementById('quantity3').value)">Add to Cart</button>
+        <div class="container">
+            <div class="cart">
+                <h2>Shopping Cart</h2>
+                <div id="cart-items"></div>
+                <p>Total: $<span id="total-price">0</span></p>
+                <button onclick="checkout()">Checkout</button>
+            </div>
         </div>
     </div>
-    <div class="container">
-        <div class="cart">
-            <h2>Shopping Cart</h2>
-            <div id="cart-items"></div>
-            <p>Total: $<span id="total-price">0</span></p>
-            <button onclick="checkout()">Checkout</button>
-        </div>
+
+    <div id="aboutPage" class="page" style="display: none;">
+        <!-- About Us -->
+        <h2>About Us</h2>
+        <p>Bob's Shop is a new online store offering a wide variety of products. We are dedicated to providing our customers with the best shopping experience. Our mission is to make shopping easy, convenient, and affordable. </p>
     </div>
-</div>
 
-<script>
-    let cart = [];
-    let totalPrice = 0;
-
-    function addToCart(productName, productPrice, quantity) {
-        quantity = parseInt(quantity);
-        if (isNaN(quantity) || quantity <= 0) {
-            alert('Please enter a valid quantity');
-            return;
-        }
-        for (let i = 0; i < quantity; i++) {
-            cart.push({ name: productName, price: productPrice });
-            totalPrice += productPrice;
-        }
-        updateCart();
-    }
-
-    function updateCart() {
-        const cartItems = document.getElementById('cart-items');
-        cartItems.innerHTML = '';
-        cart.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'cart-item';
-            div.innerHTML = `<span>${item.name}</span><span>$${item.price}</span>`;
-            cartItems.appendChild(div);
-        });
-        document.getElementById('total-price').innerText = totalPrice;
-    }
-
-    function checkout() {
-        if (cart.length === 0) {
-            alert('Your cart is empty');
-            return;
-        }
-        alert('Checkout successful! Total amount: $' + totalPrice);
-        cart = [];
-        totalPrice = 0;
-        updateCart();
-    }
-</script>
-
+    <div id="contactPage" class="page" style="display: none;">
+        <!-- Contact -->
+        <h2>Contact Us</h2>
+        <p>If you have any questions or feedback, please feel free to contact us at: </p>
+        <p>Email: bobs.shop@example.com</p>
+        <p>Phone: +1 555-123-4567</p>
+    </div>
 
     <img src="https://psdland.net/wp-content/uploads/2022/01/1641273403_maxresdefault.jpg" alt="hero">
 
@@ -135,6 +174,103 @@
         <p>Copyright, Tao Tianyi(Bob)</p>
     </footer>
 
-    <script src="wel.js"></script>
+    <script>
+        let cart = [];
+        let totalPrice = 0;
+        let isLoggedIn = false;
+
+        function showPage(pageId) {
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+            }
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        function createUser() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === '' || password === '') {
+                alert("Please enter both username and password.");
+                return;
+            }
+
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+
+            alert("User created successfully!");
+            showPage('loginPage');
+        }
+
+        function login() {
+            var loginUsername = document.getElementById("loginUsername").value.trim();
+            var loginPassword = document.getElementById("loginPassword").value.trim();
+
+            if (loginUsername === '' || loginPassword === '') {
+                alert("Please enter both username and password.");
+                return;
+            }
+
+            var storedUsername = localStorage.getItem('username');
+            var storedPassword = localStorage.getItem('password');
+
+            if (loginUsername === storedUsername && loginPassword === storedPassword) {
+                alert("Login successful!");
+                isLoggedIn = true;
+                document.getElementById('shoppingLink').style.display = 'inline';
+                showPage('shoppingPage');
+            } else {
+                alert("Invalid username or password. Please try again.");
+                clearLoginFields();
+            }
+        }
+
+        function clearLoginFields() {
+            document.getElementById("loginUsername").value = "";
+            document.getElementById("loginPassword").value = "";
+        }
+
+        function addToCart(productName, productPrice, quantity) {
+            if (!isLoggedIn) {
+                alert("Please log in to access shopping cart.");
+                return;
+            }
+
+            quantity = parseInt(quantity);
+            if (isNaN(quantity) || quantity <= 0) {
+                alert('Please enter a valid quantity');
+                return;
+            }
+            for (let i = 0; i < quantity; i++) {
+                cart.push({ name: productName, price: productPrice });
+                totalPrice += productPrice;
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.textContent = `${item.name} - $${item.price}`;
+                cartItems.appendChild(div);
+            });
+            document.getElementById('total-price').textContent = totalPrice;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty');
+                return;
+            }
+            alert('Checkout successful! Total amount: $' + totalPrice);
+            cart = [];
+            totalPrice = 0;
+            updateCart();
+        }
+    </script>
 </body>
 </html>
