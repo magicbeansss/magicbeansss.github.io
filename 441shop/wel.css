@@ -1,32 +1,81 @@
+/* Theme color definition */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #6c757d; /* Gray */
+    --white: #fff;
+    --black: #000;
+}
+
+/* Style code, using theme colors */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: sans-serif;
+    background-color: var(--white);
 }
-
-header {
-    background-color: #06d9fe;
-    color: #fff;
-    padding: 20px;
-}
-
-nav ul {
-    list-style-type: none;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
 .page {
     display: none;
     padding: 20px;
+    border: 1px solid var(--secondary-color);
+    margin-bottom: 20px;
+    background-color: var(--white);
 }
-
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.product {
+    width: 200px;
+    text-align: center;
+    border: 1px solid var(--secondary-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--white);
+}
+.cart {
+    width: 300px;
+    text-align: center;
+    border: 1px solid var(--secondary-color);
+    padding: 10px;
+    background-color: var(--white);
+}
+.cart-item {
+    margin-bottom: 5px;
+}
+header {
+    background-color: var(--primary-color);
+    padding: 10px;
+    color: var(--white);
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav li {
+    display: inline-block;
+    margin-right: 15px;
+}
+nav a {
+    color: var(--white);
+    text-decoration: none;
+}
+nav a:hover {
+    text-decoration: underline;
+}
 footer {
-    background-color: #333;
-    color: #fff;
     text-align: center;
     padding: 10px;
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    opacity: 0.8;
 }
